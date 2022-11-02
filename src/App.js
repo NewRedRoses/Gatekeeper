@@ -1,26 +1,23 @@
 import React from "react";
-import logo from "./logo.svg";
 
 import "./App.css";
+import { Typography, Container, Grid } from "@mui/material";
+//  file imports
+import TopBar from "./Components/TopBar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid>
+      {/* Navigation bar on top */}
+      <TopBar />
+      <Container sx={{}}>
+        <Typography variant="h4">
+          Discover alternatives to your favorite softwares.
+        </Typography>
+        <Typography variant="h5">-Search bar </Typography>
+        <Typography variant="h6">--tags</Typography>
+      </Container>
+    </Grid>
   );
 }
 
