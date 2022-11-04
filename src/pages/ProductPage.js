@@ -1,7 +1,9 @@
 import { Container, Typography, Button, Stack, Grid } from "@mui/material";
 
 import React from "react";
+import ProductCard from "../Components/ProductCard";
 import TopBar from "../Components/TopBar";
+import UserReviewCard from "../Components/UserReviewCard";
 
 export default function ProductPage() {
   const productName = "Audacity";
@@ -39,6 +41,9 @@ export default function ProductPage() {
           </Stack>
         </Grid>
       </Container>
+
+      <h1>Thoughts of the Community</h1>
+      <UserReviewCard />
     </div>
   );
 }
