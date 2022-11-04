@@ -1,15 +1,32 @@
 import React from "react";
 
 import "./App.css";
-import { Typography, Container, Grid, Box } from "@mui/material";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
+
 //  file imports
 import TopBar from "./Components/TopBar";
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
+import ProductReviewPage from "./pages/ProductReviewPage";
 import SearchPage from "./pages/SearchPage";
+import Layout from "./pages/Layout";
+import { Typography, Container, Grid, Box } from "@mui/material";
 import SearchBar from "./Components/SearchBar";
 import Tags from "./Components/Tags";
 
+
 function App() {
+  //  react routers -> ui.dev/react-router-tutorial
   return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/product" element={<ProductPage />} />
+        <Route path="/review" element={<ProductReviewPage />} />
+        {/* <Route path="*" element={<HomePage />} /> */}
+      </Routes>
+    </BrowserRouter>
     <Grid sx={{background: 'linear-gradient(#47516F, #000000)'}}>
       {/* Navigation bar on top */}
       <TopBar />
@@ -30,6 +47,7 @@ function App() {
 
     // to test search page rn:
     // <SearchPage />
+
   );
 }
 

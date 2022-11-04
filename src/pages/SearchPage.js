@@ -1,13 +1,14 @@
 import React from "react";
-import ProductCard from "../Components/ProductCard";
 import TopBar from "../Components/TopBar";
+import ProductCard from "../Components/ProductCard";
+
 
 export default function SearchPage() {
-
-    return (
-        <>
+  return (
+    <>
             <TopBar />
             <ProductCard name="gimp" />
-        </>
-    );
+    </>
+  );
 }
+
