@@ -21,9 +21,6 @@ function App() {
         {/* <Route path="*" element={<HomePage />} /> */}
       </Routes>
     </BrowserRouter>
-
-    // to test search page rn:
-    // type /search on url bar :)
   );
 }
 
