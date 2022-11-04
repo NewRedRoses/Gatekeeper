@@ -4,6 +4,7 @@ import "./App.css";
 import { Typography, Container, Grid } from "@mui/material";
 //  file imports
 import TopBar from "./Components/TopBar";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         <Typography variant="h6">--tags</Typography>
       </Container>
     </Grid>
+    
+    // to test search page rn:
+    // <SearchPage />
   );
 }
 
