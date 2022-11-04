@@ -10,7 +10,7 @@ export default function HomePage() {
     <Box>
       <TopBar />
       <Container>
-        <Typography> Testing</Typography>
+        <Typography> Home Page</Typography>
       </Container>
     </Box>
   );

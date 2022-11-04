@@ -12,16 +12,14 @@ import Layout from "./pages/Layout";
 
 function App() {
   //  react routers -> ui.dev/react-router-tutorial
-  https: return (
+  return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route index element={<Layout />} />
-          <Route path="Search" element={<SearchPage />} />
-          <Route path="Product" element={<ProductPage />} />
-          <Route path="Review" element={<ProductReviewPage />} />
-          <Route path="*" element={<HomePage />} />
-        </Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/product" element={<ProductPage />} />
+        <Route path="/review" element={<ProductReviewPage />} />
+        {/* <Route path="*" element={<HomePage />} /> */}
       </Routes>
     </BrowserRouter>
   );
