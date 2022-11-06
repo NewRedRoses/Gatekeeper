@@ -32,18 +32,17 @@ export default function ProductPage() {
     minHeight: 300,
   };
   return (
-    <Box sx={{ backgroundColor: "#F6F4F1" }}>
-      <div>
-        <TopBar />
-      </div>
+    <Grid sx={{ backgroundColor: "#F6F4F1" }}>
+      <TopBar position="static" />
 
-      <Container sx={{ paddingTop: 5 }}>
-        <Grid container spacing={1}>
+      <Container sx={{ paddingTop: 4 }}>
+        {/* top 3 items */}
+        <Grid container spacing={3}>
+          {/* Logo and Name */}
           <Grid item xs={4}>
             <div>
               <Typography variant="h4"> {productName}</Typography>
-            </div>
-            <div>
+
               <img
                 width={"100%"}
                 height={"100%"}
@@ -53,44 +52,52 @@ export default function ProductPage() {
             </div>
           </Grid>
 
-          <Grid item xs>
-            <Stack spacing={2}>
-              <div>
+          {/* Desc, Link and review btn */}
+          <Grid item xs={4}>
+            <div>
+              <Stack spacing={1}>
                 <Typography variant="p"> {productDescription}</Typography>
-              </div>
-              <div>
+
                 <a href={productLink}> {"-> " + productLink}</a>
-              </div>
-              <div>
-                <Button href="/review" variant="contained" color="secondary">
-                  Write a Review
-                </Button>
-              </div>
-            </Stack>
+                <div>
+                  <Button href="/review" variant="contained" color="secondary">
+                    Write a Review
+                  </Button>
+                </div>
+              </Stack>
+            </div>
           </Grid>
-          <Grid item xs={3}>
-            <Card sx={{ paddingTop: 1, paddingLeft: 2 }}>
-              <Typography variant="h5"> Usability</Typography>
-              <div>
-                <Rating name="read-only" value={value} readOnly />
-              </div>
-              <Typography variant="h5"> Apperance</Typography>
-              <div>
-                <Rating name="read-only" value={3} readOnly />
-              </div>
-              <Typography variant="h5"> Customization</Typography>
-              <div>
-                <Rating name="read-only" value={2} readOnly />
-              </div>
-            </Card>
+
+          {/* Ratings per category */}
+          <Grid item xs={4}>
+            <div>
+              <Card sx={{ paddingTop: 1, paddingLeft: 2 }}>
+                <Typography variant="h5"> Usability</Typography>
+                <div>
+                  <Rating name="read-only" value={value} readOnly />
+                </div>
+                <Typography variant="h5"> Appearance</Typography>
+                <div>
+                  <Rating name="read-only" value={3} readOnly />
+                </div>
+                <Typography variant="h5"> Customization</Typography>
+                <div>
+                  <Rating name="read-only" value={2} readOnly />
+                </div>
+              </Card>
+            </div>
           </Grid>
         </Grid>
 
-        <div>
-          <h1>Thoughts of the Community</h1>
+        {/* Using stack since its only 1D  */}
+        <Stack spacing={2}>
+          <h1> Thoughts of the Community</h1>
+
           <UserReviewCard />
-        </div>
+          <UserReviewCard />
+          <UserReviewCard />
+        </Stack>
       </Container>
-    </Box>
+    </Grid>
   );
 }

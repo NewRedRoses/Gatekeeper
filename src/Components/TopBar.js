@@ -5,7 +5,7 @@ import { Outlet, Link } from "react-router-dom";
 export default function TopBar() {
   const purple = "#806491";
   return (
-    <Box>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar sx={{ backgroundColor: "#806491" }}>
           <Link to="/">
