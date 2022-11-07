@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 
 import React from "react";
-import ProductCard from "../Components/ProductCard";
 import TopBar from "../Components/TopBar";
 import UserReviewCard from "../Components/UserReviewCard";
 
