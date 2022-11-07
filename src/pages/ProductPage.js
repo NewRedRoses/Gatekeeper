@@ -9,10 +9,12 @@ import {
   Box,
 } from "@mui/material";
 
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../Components/ProductCard";
 import TopBar from "../Components/TopBar";
 import UserReviewCard from "../Components/UserReviewCard";
+import {collection, getDocs, getDoc, query, where} from "firebase/firestore"
+import { db } from "../firebase.js"
 
 export default function ProductPage() {
   const productName = "Audacity";
@@ -20,10 +22,21 @@ export default function ProductPage() {
     "Audacity is an easy-to-use, multi-track audio editor and recorder for Windows, macOS, GNU/Linux and other operating systems. Audacity is free, open source software.";
   const productLink = "https://www.audacityteam.org/";
   const purple = "#806491";
-  const productLogo =
-    "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png";
+  const productLogo = "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png";
 
   const [value, setValue] = React.useState(4);
+  const [appData, setAppData] = React.useState({});
+  
+  useEffect(() => {
+    const appsCollectionRef = collection(db, "apps");
+    //const queryRef = query(appsCollectionRef, where("appName", "==", "Audacity"));
+    
+    
+    const fetchData = async () => { 
+    }
+    fetchData()
+    console.log(appData)
+  }, [])
 
   const productLogoStyles = {
     width: 400,
