@@ -1,11 +1,10 @@
 import React from "react";
-import { Card, Avatar, Grid, Paper, Button } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { Card, Avatar, Grid, Button } from "@mui/material";
 
 export default function UserReviewCard() {
 
     return (
-        <Card sx={{width: 625, height: 250, p:1.5}}>
+        <Card sx={{width: 625, height: 250, p:1.5, boxShadow: 5}}>
             <Grid container spacing={2}>
                 <Grid item xs={1.5}>
                     <Avatar sx={{ width: 65, height: 65 }}>L</Avatar>
