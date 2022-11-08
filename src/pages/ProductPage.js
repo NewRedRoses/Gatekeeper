@@ -13,7 +13,7 @@ import React, { useEffect } from "react";
 import ProductCard from "../Components/ProductCard";
 import TopBar from "../Components/TopBar";
 import UserReviewCard from "../Components/UserReviewCard";
-import {collection, getDocs, getDoc, query, where} from "firebase/firestore"
+import { onSnapshot, collection, getDocs, getDoc, query, where } from "firebase/firestore"
 import { db } from "../firebase.js"
 
 export default function ProductPage() {
@@ -25,18 +25,43 @@ export default function ProductPage() {
   const productLogo = "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png";
 
   const [value, setValue] = React.useState(4);
-  const [appData, setAppData] = React.useState({});
+  const [appData, setAppData] = React.useState([]);
+
+  
   
   useEffect(() => {
     const appsCollectionRef = collection(db, "apps");
-    //const queryRef = query(appsCollectionRef, where("appName", "==", "Audacity"));
-    
+    const queryRef = query(appsCollectionRef, where("appName", "==", "Audacity"));
+    let p = [];
     
     const fetchData = async () => { 
+      const curData = await getDocs(queryRef).then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          p.push({...doc.data(), id: doc.id})
+        })
+      }).catch((e) => {
+        console.log(e, "getting specified document did not work")
+      })
+      
+      
+      // onSnapshot(queryRef, (snapshot) => {
+      //   snapshot.docs.forEach( (doc) => 
+      //     p.push({...doc.data(), id: doc.id}))
+      // })  
     }
+    setAppData(p)
     fetchData()
-    console.log(appData)
+    
   }, [])
+
+useEffect(() => {
+  console.log(appData);
+  try {
+    console.log(appData[0])
+  } catch (e) {
+    console.log(e, "error")
+  }
+}, [appData])
 
   const productLogoStyles = {
     width: 400,
@@ -54,8 +79,11 @@ export default function ProductPage() {
           {/* Logo and Name */}
           <Grid item xs={4}>
             <div>
-              <Typography variant="h4"> {productName}</Typography>
-
+              <Typography variant="h4"> {appData.productName}</Typography>
+            
+            {
+            console.log(appData)
+            }
               <img
                 width={"100%"}
                 height={"100%"}
