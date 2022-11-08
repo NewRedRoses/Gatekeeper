@@ -2,9 +2,10 @@ import React from "react";
 
 import { Typography, Box, Grid } from "@mui/material";
 import { Container } from "@mui/system";
-import TopBar from "../Components/TopBar";
+import header from "../Components/header";
 import Tags from "../Components/Tags";
 import SearchBar from "../Components/SearchBar";
+import footer from "../Components/footer";
 
 export default function HomePage() {
   return (

@@ -11,8 +11,9 @@ import {
 
 import React from "react";
 import ProductCard from "../Components/ProductCard";
-import TopBar from "../Components/TopBar";
+import header from "../Components/header";
 import UserReviewCard from "../Components/UserReviewCard";
+import footer from "../Components/footer";
 
 export default function ProductPage() {
   const productName = "Audacity";
