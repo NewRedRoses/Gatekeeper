@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 
 import React from "react";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+import Header from "../Components/header";
+import Footer from "../Components/footer";
 import UserReviewCard from "../Components/UserReviewCard";
 
 export default function ProductPage() {

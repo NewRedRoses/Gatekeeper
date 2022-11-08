@@ -2,8 +2,8 @@ import React from "react";
 import { Box, Grid, Stack, Typography, Rating, Chip, TextField, Button } from "@mui/material";
 import SelectTag from "../Components/SelectTag"
 import { Container } from "@mui/system";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+import Header from "../Components/header";
+import Footer from "../Components/footer";
 
 export default function ProductReviewPage() {
   // Ideally these would be passed as props/arguments
