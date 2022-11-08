@@ -10,10 +10,8 @@ import {
 } from "@mui/material";
 
 import React from "react";
-import ProductCard from "../Components/ProductCard";
-import header from "../Components/header";
+import TopBar from "../Components/TopBar";
 import UserReviewCard from "../Components/UserReviewCard";
-import footer from "../Components/footer";
 
 export default function ProductPage() {
   const productName = "Audacity";
