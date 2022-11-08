@@ -1,6 +1,7 @@
 import React from "react";
-import TopBar from "../Components/TopBar";
+import header from "../Components/header";
 import ProductCard from "../Components/ProductCard";
+import footer from "../Components/footer";
 
 
 export default function SearchPage() {
