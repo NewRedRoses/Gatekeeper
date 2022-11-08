@@ -1,9 +1,10 @@
 import React from "react";
 import { Box, Grid, Stack, Typography, Rating, Chip, TextField, Button } from "@mui/material";
-import TopBar from "../Components/TopBar";
 import SelectTag from "../Components/SelectTag"
 import { Container } from "@mui/system";
-import { useRef } from "react";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
+
 export default function ProductReviewPage() {
   // Ideally these would be passed as props/arguments
   const productName = "Audacity";
@@ -18,8 +19,9 @@ export default function ProductReviewPage() {
   };
 
     return (
+      <>
       <Grid sx={{ backgroundColor: "#F6F4F1" }}>
-        <TopBar />
+        <Header />
         <Container sx={{ paddingTop: 4, height :"100vh" }}>
           <Grid container spacing={3}>
             <Grid item xs>
@@ -108,5 +110,8 @@ export default function ProductReviewPage() {
           </Grid>
         </Container>
       </Grid>
+
+      <Footer />
+      </>
     );
   }

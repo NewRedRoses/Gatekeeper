@@ -2,16 +2,17 @@ import React from "react";
 
 import { Typography, Box, Grid } from "@mui/material";
 import { Container } from "@mui/system";
-import header from "../Components/header";
+import Header from "../Components/Header";
 import Tags from "../Components/Tags";
 import SearchBar from "../Components/SearchBar";
-import footer from "../Components/footer";
+import Footer from "../Components/Footer";
 
 export default function HomePage() {
   return (
+    <>
     <Grid sx={{ background: "linear-gradient(#47516F, #000000)" }}>
       {/* Navigation bar on top */}
-      <TopBar />
+      <Header />
       <Container>
         <Box component="center" sx={{ height: "100vh", mt: 25 }}>
           <Typography
@@ -39,5 +40,8 @@ export default function HomePage() {
         </Box>
       </Container>
     </Grid>
+
+    <Footer />
+    </>
   );
 }

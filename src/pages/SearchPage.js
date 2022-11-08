@@ -1,14 +1,15 @@
 import React from "react";
-import header from "../Components/header";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 import ProductCard from "../Components/ProductCard";
-import footer from "../Components/footer";
 
 
 export default function SearchPage() {
   return (
     <>
-            <TopBar />
+            <Header />
             <ProductCard name="gimp" />
+            <Footer />
     </>
   );
 }
