@@ -6,11 +6,11 @@ import {
   Rating,
   Stack,
   Card,
-  Box,
 } from "@mui/material";
 
 import React from "react";
-import TopBar from "../Components/TopBar";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 import UserReviewCard from "../Components/UserReviewCard";
 
 export default function ProductPage() {
@@ -31,8 +31,9 @@ export default function ProductPage() {
     minHeight: 300,
   };
   return (
+    <>
     <Grid sx={{ backgroundColor: "#F6F4F1" }}>
-      <TopBar position="static" />
+      <Header position="static" />
 
       <Container sx={{ paddingTop: 4 }}>
         {/* top 3 items */}
@@ -98,5 +99,8 @@ export default function ProductPage() {
         </Stack>
       </Container>
     </Grid>
+
+    <Footer />
+    </>
   );
 }
