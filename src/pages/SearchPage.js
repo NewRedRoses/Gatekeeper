@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Header from "../Components/header";
 import Footer from "../Components/footer";
 import { Grid, Box, Container } from "@mui/material";
@@ -6,7 +7,7 @@ import { Grid, Box, Container } from "@mui/material";
 import SearchBar from "../Components/SearchBar";
 import ProductCard from "../Components/ProductCard";
 
-const sampleData = [
+const data = [
   "gimp",
   "firefox",
   "audacity",
@@ -27,28 +28,43 @@ const sampleData = [
   "audacity",
 ];
 
+const filterData = (query, data) => {
+  if (!query) {
+    return data;
+  } else {
+    return data.filter((d) => d.toLowerCase().includes(query));
+  }
+};
+
 export default function SearchPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const dataFiltered = filterData(searchQuery, data);
+
   return (
     <Box>
       <Header />
-      <Grid>
-        <Box width="100%" display="flex" justifyContent="center">
-          <SearchBar />
-        </Box>
-        <Container sx={{ paddingBottom: 5 }}>
+
+      <Container>
+        <Grid container direction="column" spacing={1}>
+          {/* The search bar */}
+          <Box sx={{ width: "10" }}>
+            <SearchBar value={searchQuery} setValue={setSearchQuery} />
+          </Box>
+          {console.log(searchQuery)}
+          {/* The searched results */}
           <Grid container spacing={4}>
-            {sampleData.map((name) => {
+            {data.map((name, element) => {
               return (
-                <Grid item xs={0}>
+                <Grid key={element } item xs={0}>
                   <ProductCard name={name} />
                 </Grid>
               );
             })}
           </Grid>
-        </Container>
+        </Grid>
+      </Container>
 
-        <Footer />
-      </Grid>
+      <Footer />
     </Box>
   );
 }
