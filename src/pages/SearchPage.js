@@ -7,6 +7,7 @@ import { Grid, Box, Container } from "@mui/material";
 import SearchBar from "../Components/SearchBar";
 import ProductCard from "../Components/ProductCard";
 
+// TODO: this "data" object has to be replaced with firebase data.
 const data = [
   "gimp",
   "firefox",
@@ -24,6 +25,7 @@ const data = [
   "firefox",
   "audacity",
   "gimp",
+  "test",
   "firefox",
   "audacity",
 ];
@@ -47,16 +49,19 @@ export default function SearchPage() {
       <Container>
         <Grid container direction="column" spacing={1}>
           {/* The search bar */}
-          <Box sx={{ width: "10" }}>
-            <SearchBar value={searchQuery} setValue={setSearchQuery} />
+          <Box>
+            <SearchBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
           </Box>
-          {console.log(searchQuery)}
+
           {/* The searched results */}
           <Grid container spacing={4}>
-            {data.map((name, element) => {
+            {dataFiltered.map((filteredSoftware) => {
               return (
-                <Grid key={element } item xs={0}>
-                  <ProductCard name={name} />
+                <Grid key={filteredSoftware.id} item xs={0}>
+                  <ProductCard name={filteredSoftware} />
                 </Grid>
               );
             })}
