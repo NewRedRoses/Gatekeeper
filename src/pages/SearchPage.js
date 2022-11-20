@@ -9,25 +9,45 @@ import ProductCard from "../Components/ProductCard";
 
 // TODO: this "data" object has to be replaced with firebase data.
 const data = [
-  "gimp",
-  "firefox",
-  "audacity",
-  "gimp",
-  "firefox",
-  "audacity",
-  "gimp",
-  "firefox",
-  "audacity",
-  "gimp",
-  "firefox",
-  "audacity",
-  "gimp",
-  "firefox",
-  "audacity",
-  "gimp",
-  "test",
-  "firefox",
-  "audacity",
+  {
+    id: 1,
+    name: "Gimp",
+    img: "https://www.gimp.org/images/frontpage/wilber-big.png",
+    rating: 4,
+    topTags: ["free", "open source", "photo editing"],
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
+  },
+  {
+    id: 2,
+    name: "Audacity",
+    img:
+      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    rating: 3.0,
+    topTags: ["free", "open source", "photo editing"],
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
+  },
+  {
+    id: 3,
+    name: "photoshop",
+    img:
+      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    rating: 4.0,
+    topTags: [" free ", " open-source", " photo editing "],
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
+  },
+  {
+    id: 4,
+    name: "test",
+    img:
+      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    rating: 2.5,
+    topTags: ["free", "open source", "photo editing"],
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
+  },
 ];
 
 const filterData = (query, data) => {
@@ -60,8 +80,14 @@ export default function SearchPage() {
           <Grid container spacing={4}>
             {dataFiltered.map((filteredSoftware) => {
               return (
-                <Grid key={filteredSoftware.id} item xs={0}>
-                  <ProductCard name={filteredSoftware} />
+                <Grid key={filteredSoftware.id} item xs>
+                  <ProductCard
+                    name={filteredSoftware.name}
+                    imageUrl={filteredSoftware.img}
+                    rating={filteredSoftware.rating}
+                    topTags={filteredSoftware.topTags}
+                    description={filteredSoftware.description}
+                  />
                 </Grid>
               );
             })}
