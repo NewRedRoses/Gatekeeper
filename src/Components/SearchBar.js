@@ -10,6 +10,7 @@ export default function BasicTextFields({ value, setSearchQuery }) {
   // event.preventDefault();
 
   const handleChange = (event) => {
+    event.preventDefault();
     setSearchQuery(event.target.value);
   };
 

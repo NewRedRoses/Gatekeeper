@@ -82,6 +82,10 @@ export default function Header() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleSubmit = () => {
+    window.location.href = "/search";
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -162,7 +166,7 @@ export default function Header() {
         <AppBar position="static" sx={{ bgcolor: "#806491" }}>
           <Toolbar>
             <Link to="/">
-              <img src={logo} width="50%" height="50%" />
+              <img src={logo} width="200" height="50" />
               {/* <Typography
                 variant="h6"
                 noWrap
@@ -178,6 +182,7 @@ export default function Header() {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Search…"
+                onClick={handleSubmit}
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
