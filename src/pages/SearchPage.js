@@ -6,49 +6,9 @@ import { Grid, Box, Container } from "@mui/material";
 // File imports
 import SearchBar from "../Components/SearchBar";
 import ProductCard from "../Components/ProductCard";
+import { SoftwareData } from "../data";
 
 // TODO: this "data" object has to be replaced with firebase data.
-const data = [
-  {
-    id: 1,
-    name: "Gimp",
-    img: "https://www.gimp.org/images/frontpage/wilber-big.png",
-    rating: 4,
-    topTags: ["free", "open source", "photo editing"],
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
-  },
-  {
-    id: 2,
-    name: "Audacity",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
-    rating: 3.0,
-    topTags: ["free", "open source", "photo editing"],
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
-  },
-  {
-    id: 3,
-    name: "photoshop",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
-    rating: 4.0,
-    topTags: [" free ", " open-source", " photo editing "],
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
-  },
-  {
-    id: 4,
-    name: "test",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
-    rating: 2.5,
-    topTags: ["free", "open source", "photo editing"],
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
-  },
-];
 
 const filterData = (query, data) => {
   if (!query) {
@@ -60,10 +20,10 @@ const filterData = (query, data) => {
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const dataFiltered = filterData(searchQuery, data);
+  const dataFiltered = filterData(searchQuery, SoftwareData);
 
   return (
-    <Box>
+    <Box sx={{ backgroundColor: "#F6F4F1" }}>
       <Header />
 
       <Container>
@@ -77,16 +37,24 @@ export default function SearchPage() {
           </Box>
 
           {/* The searched results */}
-          <Grid container spacing={4}>
+          <Grid container spacing={2}>
             {dataFiltered.map((filteredSoftware) => {
+              const {
+                id,
+                name,
+                img,
+                rating,
+                topTags,
+                description,
+              } = filteredSoftware;
               return (
                 <Grid key={filteredSoftware.id} item xs>
                   <ProductCard
-                    name={filteredSoftware.name}
-                    imageUrl={filteredSoftware.img}
-                    rating={filteredSoftware.rating}
-                    topTags={filteredSoftware.topTags}
-                    description={filteredSoftware.description}
+                    name={name}
+                    imageUrl={img}
+                    rating={rating}
+                    topTags={topTags}
+                    description={description}
                   />
                 </Grid>
               );
