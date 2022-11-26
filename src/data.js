@@ -2,8 +2,9 @@ export const SoftwareData = [
   {
     id: 1,
     name: "Gimp",
-    img: "https://www.gimp.org/images/frontpage/wilber-big.png",
-    rating: 4,
+    img:
+      "https://logos-download.com/wp-content/uploads/2019/06/Gimp_Logo_new-700x521.png",
+    rating: 4.0,
     topTags: ["free", "open-source", "photo-editing"],
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
@@ -12,7 +13,7 @@ export const SoftwareData = [
     id: 2,
     name: "Audacity",
     img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+      "https://logos-download.com/wp-content/uploads/2017/01/Audacity_logo_logotype.png",
     rating: 3.0,
     topTags: ["free", "open-source", "audio-editing"],
     description:

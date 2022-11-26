@@ -6,9 +6,9 @@ import { Grid, Box, Container } from "@mui/material";
 // File imports
 import SearchBar from "../Components/SearchBar";
 import ProductCard from "../Components/ProductCard";
-import { SoftwareData } from "../data";
 
 // TODO: this "data" object has to be replaced with firebase data.
+import { SoftwareData } from "../data";
 
 const filterData = (query, data) => {
   if (!query) {
@@ -48,8 +48,9 @@ export default function SearchPage() {
                 description,
               } = filteredSoftware;
               return (
-                <Grid key={filteredSoftware.id} item xs>
+                <Grid item>
                   <ProductCard
+                    key={id}
                     name={name}
                     imageUrl={img}
                     rating={rating}

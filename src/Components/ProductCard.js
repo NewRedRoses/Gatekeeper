@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Card,
+  CardMedia,
   Box,
   Stack,
   CardActionArea,
@@ -10,7 +11,7 @@ import {
   Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import Chips from "./Chips";
 export default function ProductCard({
   name,
   imgUrl,
@@ -23,52 +24,41 @@ export default function ProductCard({
   };
 
   return (
-    <Card>
+    <Card sx={{ display: "flex" }}>
       <CardActionArea onClick={handleClick}>
         <CardContent>
-          <Grid container direction="row">
-            {/* Image  */}
-            <Grid container item xs={3}>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png"
-                width={250}
-                height={250}
-                alt={name + "'s Logo"}
-              />
-            </Grid>
+          {/* <Grid container direction="row"> */}
+          {/* Image  */}
+          <Stack direction="row" spacing={3}>
+            <CardMedia
+              component="img"
+              sx={{ width: 150 }}
+              src={{ uri: imgUrl }}
+              alt={name + "'s logo"}
+            ></CardMedia>
+
             {/* Start of text  */}
-            <Grid item container direction="column" xs={9}>
-              <Grid item>
-                <Typography variant="h6">{name}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="subtitle1">{rating} stars</Typography>
-              </Grid>
+            <Stack>
+              <Typography variant="h4">{name}</Typography>
+
+              <Typography variant="subtitle1">{rating} stars</Typography>
+
               {/* tags  */}
-              <Grid item xs>
+              <Grid container spacing={1}>
                 {topTags.map((tag, index) => {
                   return (
-                    <Grid container>
-                      <Box
-                        variant="text"
-                        sx={{
-                          color: "white",
-                          borderRadius: 20,
-                          textTransform: "lowercase",
-                          fontWeight: "bold",
-                          backgroundColor: "#4b8658",
-                        }}
-                      >
-                        {tag}
-                      </Box>
+                    <Grid item>
+                      <Chips label={tag} />
                     </Grid>
                   );
                 })}
               </Grid>
+
               {/* Description */}
-              <Grid item>{description}</Grid>
-            </Grid>
-          </Grid>
+              <Typography variant="h6">{description}</Typography>
+            </Stack>
+            {/* </Grid> */}
+          </Stack>
         </CardContent>
       </CardActionArea>
     </Card>
