@@ -50,7 +50,7 @@ export default function SearchPage() {
               } = filteredSoftware;
               console.log("im here test", img);
               return (
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12} sm={6}>
                   <ProductCard
                     name={name}
                     imgUrl={filteredSoftware.img}

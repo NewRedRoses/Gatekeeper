@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
+import Rating from "@mui/material/Rating";
+
 import Chips from "./Chips";
 import { useEffect } from "react";
 
@@ -25,29 +27,35 @@ export default function ProductCard({
   const handleClick = () => {
     window.location.href = "/product";
   };
-  useEffect(() => {
-    console.log(name, imgUrl, rating, topTags, description);
-  }, []);
 
   return (
-    <Card sx={{ minWidth: 275, height: 250 }}>
+    <Card sx={{ minWidth: 275, height: "100%" }}>
       <CardActionArea onClick={handleClick}>
         <CardContent>
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={2}>
             <CardMedia
               component="img"
               sx={{
-                height: 150,
+                height: "25%",
+                width: "25%",
               }}
               src={imgUrl}
-              alt={name + "'s logo"}
+              title={name + "'s logo"}
             ></CardMedia>
 
             {/* Start of text  */}
-            <Stack>
+            <Stack spacing={0.5}>
               <Typography variant="h5">{name}</Typography>
 
-              <Typography variant="body1">{rating} stars</Typography>
+              <Grid direction="row" container>
+                <Rating
+                  component="legend"
+                  value={rating}
+                  precision={0.5}
+                  readOnly
+                />
+                <Typography variant="body1">{rating} stars</Typography>
+              </Grid>
 
               {/* tags  */}
               <Grid container spacing={0.5}>
