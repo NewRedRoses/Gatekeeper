@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Header from "../Components/header";
 import Footer from "../Components/footer";
-import { Grid, Box, Container } from "@mui/material";
+import { Grid, Box, Container, Card, Stack } from "@mui/material";
 // File imports
 import SearchBar from "../Components/SearchBar";
 import ProductCard from "../Components/ProductCard";
@@ -37,7 +37,8 @@ export default function SearchPage() {
           </Box>
 
           {/* The searched results */}
-          <Grid container spacing={2}>
+
+          <Grid container spacing={3} sx={{ paddingBottom: 4 }}>
             {dataFiltered.map((filteredSoftware) => {
               const {
                 id,
@@ -47,12 +48,12 @@ export default function SearchPage() {
                 topTags,
                 description,
               } = filteredSoftware;
+              console.log("im here test", img);
               return (
-                <Grid item>
+                <Grid item xs={12} sm={6} md={4}>
                   <ProductCard
-                    key={id}
                     name={name}
-                    imageUrl={img}
+                    imgUrl={filteredSoftware.img}
                     rating={rating}
                     topTags={topTags}
                     description={description}

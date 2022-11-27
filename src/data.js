@@ -22,8 +22,7 @@ export const SoftwareData = [
   {
     id: 3,
     name: "Photoshop",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.0,
     topTags: ["free", "open-source", "photo-editing "],
     description:
@@ -32,8 +31,7 @@ export const SoftwareData = [
   {
     id: 4,
     name: "test",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 2.5,
     topTags: ["free", "open-source", "photo-editing"],
     description:
@@ -42,8 +40,7 @@ export const SoftwareData = [
   {
     id: 5,
     name: "Obsidian",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["free", "download-only", "note-taking"],
     description:
@@ -52,8 +49,7 @@ export const SoftwareData = [
   {
     id: 6,
     name: "Twitter",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["free", "proprietary", "note-taking"],
     description:
@@ -62,8 +58,7 @@ export const SoftwareData = [
   {
     id: 7,
     name: "Facebook",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["social-media", "free"],
     description:
@@ -72,8 +67,7 @@ export const SoftwareData = [
   {
     id: 8,
     name: "Instagram",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["social", "proprietary", "note-taking"],
     description:
@@ -82,8 +76,7 @@ export const SoftwareData = [
   {
     id: 9,
     name: "iMessages",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["free", "proprietary", "messaging"],
     description:
@@ -92,8 +85,7 @@ export const SoftwareData = [
   {
     id: 10,
     name: "Obsidian",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["free", "proprietary", "note-taking"],
     description:
@@ -102,8 +94,7 @@ export const SoftwareData = [
   {
     id: 11,
     name: "Firefox",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["free", "open-source", "Web-Browser"],
     description:
@@ -112,8 +103,7 @@ export const SoftwareData = [
   {
     id: 11,
     name: "Chrome",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["free", "open-source", "Web-Browser"],
     description:
@@ -122,8 +112,7 @@ export const SoftwareData = [
   {
     id: 12,
     name: "Visual Studio Code",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["free", "open-source", "text-editor"],
     description:
@@ -132,8 +121,7 @@ export const SoftwareData = [
   {
     id: 13,
     name: "Discord",
-    img:
-      "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png",
+    img: "https://via.placeholder.com/150",
     rating: 4.5,
     topTags: ["free", "Gaming", "Voice-Chat"],
     description:
