@@ -2,26 +2,22 @@ import React from "react";
 import {
   Card,
   CardMedia,
-  Box,
   Stack,
   CardActionArea,
   CardContent,
   Typography,
   Grid,
-  Button,
 } from "@mui/material";
 
-import { useNavigate } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 
 import Chips from "./Chips";
-import { useEffect } from "react";
 
 export default function ProductCard({
   name,
   imgUrl,
   rating,
-  topTags,
+  top_tags,
   description,
 }) {
   const handleClick = () => {
@@ -59,7 +55,7 @@ export default function ProductCard({
 
               {/* tags  */}
               <Grid container spacing={0.5}>
-                {topTags.map((tag, index) => {
+                {top_tags.map((tag, index) => {
                   return (
                     <Grid item>
                       <Chips label={tag} />
