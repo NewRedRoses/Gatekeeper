@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 
-export default function BasicTextFields({ value, setSearchQuery }) {
+export default function BasicTextFields({ setSearchQuery }) {
   let navigate = useNavigate();
 
   // event.preventDefault();
 
   const handleChange = (event) => {
     event.preventDefault();
-    setSearchQuery(event.target.value);
+    setSearchQuery(event.target.value.toLowerCase());
   };
 
   return (

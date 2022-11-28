@@ -1,13 +1,21 @@
 import React from "react";
 import {
   Card,
+  CardMedia,
   Box,
   Stack,
   CardActionArea,
   CardContent,
   Typography,
   Grid,
+  Button,
 } from "@mui/material";
+
+import { useNavigate } from "react-router-dom";
+import Rating from "@mui/material/Rating";
+
+import Chips from "./Chips";
+import { useEffect } from "react";
 
 export default function ProductCard({
   name,
@@ -17,32 +25,53 @@ export default function ProductCard({
   description,
 }) {
   const handleClick = () => {
-    console.log("clicked");
+    window.location.href = "/product";
   };
 
   return (
-    <Card>
+    <Card sx={{ minWidth: 275, height: "100%" }}>
       <CardActionArea onClick={handleClick}>
         <CardContent>
           <Stack direction="row" spacing={2}>
-            <Grid item>
-              <Box
-                sx={{ width: "100%", height: "100%", backgroundColor: "green" }}
-              >
-                <img src={imgUrl} alt={name + "'s Logo"} />
-              </Box>
-            </Grid>
-            <Grid container direction="column">
-              <Grid item>
-                <Typography variant="h6">{name}</Typography>
+            <CardMedia
+              component="img"
+              sx={{
+                height: "25%",
+                width: "25%",
+              }}
+              src={imgUrl}
+              title={name + "'s logo"}
+            ></CardMedia>
+
+            {/* Start of text  */}
+            <Stack spacing={0.5}>
+              <Typography variant="h5">{name}</Typography>
+
+              <Grid direction="row" container>
+                <Rating
+                  component="legend"
+                  value={rating}
+                  precision={0.5}
+                  readOnly
+                />
+                <Typography variant="body1">{rating} stars</Typography>
               </Grid>
-              <Grid item>
-                <Typography variant="subtitle1">{rating} stars</Typography>
+
+              {/* tags  */}
+              <Grid container spacing={0.5}>
+                {topTags.map((tag, index) => {
+                  return (
+                    <Grid item>
+                      <Chips label={tag} />
+                    </Grid>
+                  );
+                })}
               </Grid>
-              <Grid item>
-                <Typography>{topTags}</Typography>
-              </Grid>
-            </Grid>
+
+              {/* Description */}
+              <Typography variant="body1">{description}</Typography>
+            </Stack>
+            {/* </Grid> */}
           </Stack>
         </CardContent>
       </CardActionArea>

@@ -6,11 +6,8 @@ import Header from "../Components/header";
 import Tags from "../Components/Tags";
 import SearchBar from "../Components/SearchBar";
 import Footer from "../Components/footer";
-import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
-  const navigate = useNavigate();
-
   const handleSubmit = () => {
     window.location.href = "/search";
   };
