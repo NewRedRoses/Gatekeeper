@@ -9,18 +9,23 @@ import ProductCard from "../Components/ProductCard";
 
 // TODO: this "data" object has to be replaced with firebase data.
 import { SoftwareData } from "../data";
+import { useEffect } from "react";
 
 const filterData = (query, data) => {
   if (!query) {
     return data;
   } else {
-    return data.filter((d) => d.toLowerCase().includes(query));
+    return data.filter((d) => d.name.toLowerCase().includes(query));
   }
 };
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const dataFiltered = filterData(searchQuery, SoftwareData);
+
+  useEffect(() => {
+    console.log("the value of the search is", searchQuery);
+  }, [searchQuery]);
 
   return (
     <Box sx={{ backgroundColor: "#F6F4F1" }}>
@@ -30,10 +35,7 @@ export default function SearchPage() {
         <Grid container direction="column" spacing={1}>
           {/* The search bar */}
           <Box>
-            <SearchBar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-            />
+            <SearchBar setSearchQuery={setSearchQuery} />
           </Box>
 
           {/* The searched results */}
@@ -48,7 +50,7 @@ export default function SearchPage() {
                 topTags,
                 description,
               } = filteredSoftware;
-              console.log("im here test", img);
+
               return (
                 <Grid item xs={12} sm={6}>
                   <ProductCard
