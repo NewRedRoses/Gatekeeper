@@ -12,79 +12,107 @@ import React from "react";
 import Header from "../Components/header";
 import Footer from "../Components/footer";
 import UserReviewCard from "../Components/UserReviewCard";
+import TotalReview from "../Components/TotalReview";
 
 export default function ProductPage() {
-  const productName = "Audacity";
+  const productName = "GIMP";
   const productDescription =
-    "Audacity is an easy-to-use, multi-track audio editor and recorder for Windows, macOS, GNU/Linux and other operating systems. Audacity is free, open source software.";
-  const productLink = "https://www.audacityteam.org/";
+    "GIMP is a cross-platform image editor available for GNU/Linux, macOS, Windows and more operating systems. It is free software, you can change its source code and distribute your changes.";
+  const productLink = "https://www.gimp.org/";
   const purple = "#806491";
   const productLogo =
-    "https://upload.wikimedia.org/wikipedia/en/d/d7/Audacity_Logo_2-2-0.png";
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/The_GIMP_icon_-_gnome.svg/640px-The_GIMP_icon_-_gnome.svg.png";
 
   const [value, setValue] = React.useState(4);
 
   const productLogoStyles = {
-    width: 400,
-    height: 300,
-    minWidth: 300,
-    minHeight: 300,
+    width: 100,
+    height: 100,
   };
   return (
     <>
       <Grid sx={{ backgroundColor: "#F6F4F1" }}>
         <Header position="static" />
 
-        <Container sx={{ paddingTop: 4 }}>
+        <Container sx={{ paddingTop: 3}}>
           {/* top 3 items */}
           <Grid container spacing={3}>
-            {/* Logo and Name */}
-            <Grid item xs={4}>
+            {/* Logo and Button */}
+            <Grid item xs={3} align="center">
               <div>
-                <Typography variant="h4"> {productName}</Typography>
-
                 <img
-                  width={"100%"}
-                  height={"100%"}
+                  width={250}
+                  height={250}
                   src={productLogo}
                   alt={productName + "'s Logo"}
                 />
               </div>
+              <div>
+                <Button
+                  href={productLink}
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    textTransform: "capitalize",
+                    fontWeight: "bold",
+                    borderRadius: 3,
+                  }}
+                >
+                  Website
+                </Button>
+              </div>
             </Grid>
 
-            {/* Desc, Link and review btn */}
-            <Grid item xs={4}>
+            {/* Logo Name, Desc. and review btn */}
+            <Grid item xs={4} sx={{ m: 5 }}>
               <div>
-                <Stack spacing={1}>
-                  <Typography variant="p"> {productDescription}</Typography>
-
-                  <a href={productLink}> {productLink}</a>
-                  <div>
-                    <Button
-                      href="/review"
-                      variant="contained"
-                      color="secondary"
-                    >
-                      Write a Review
-                    </Button>
-                  </div>
+                <Stack spacing={4}>
+                  <Typography variant="h2" fontWeight="bold">
+                    {productName}
+                  </Typography>
+                  <Typography variant="p" fontSize="25">
+                    {productDescription}
+                  </Typography>
+                  <Button
+                    href="/review"
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                    sx={{
+                      textTransform: "capitalize",
+                      fontWeight: "bold",
+                      fontSize: 20,
+                      backgroundColor: "#8064910",
+                      borderRadius: 3,
+                    }}
+                  >
+                    Write a Review
+                  </Button>
+                  <div></div>
                 </Stack>
               </div>
             </Grid>
 
-            {/* Ratings per category */}
-            <Grid item xs={4}>
+            {/* Total Ratings and Ratings per category */}
+            <Grid item xs={4} sx={{mt: 4 }}>
+              <TotalReview />
               <div>
-                <Card sx={{ paddingTop: 1, paddingLeft: 2 }}>
-                  <Typography variant="h5"> Usability</Typography>
+                <Card sx={{ p: 2, borderRadius: 3, marginTop: 3 }}>
+                  <Typography variant="h5" fontWeight="bold">
+                    Usability
+                  </Typography>
                   <div>
                     <Rating name="read-only" value={value} readOnly />
                   </div>
-                  <Typography variant="h5"> Appearance</Typography>
+                  <Typography variant="h5" fontWeight="bold">
+                    Appearance
+                  </Typography>
                   <div>
                     <Rating name="read-only" value={3} readOnly />
                   </div>
-                  <Typography variant="h5"> Customization</Typography>
+                  <Typography variant="h5" fontWeight="bold">
+                    Customization
+                  </Typography>
                   <div>
                     <Rating name="read-only" value={2} readOnly />
                   </div>
@@ -93,7 +121,7 @@ export default function ProductPage() {
             </Grid>
           </Grid>
 
-          {/* Using stack since its only 1D  */}
+          {/* Hard-coded review cards, using stack since its only 1D  */}
           <Stack spacing={2}>
             <h1> Thoughts of the Community</h1>
 
