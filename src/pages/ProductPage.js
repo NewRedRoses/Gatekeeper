@@ -15,7 +15,7 @@ import UserReviewCard from "../Components/UserReviewCard";
 import TotalReview from "../Components/TotalReview";
 
 export default function ProductPage() {
-  const productName = "GIMP";
+  const productName = "Gimp";
   const productDescription =
     "GIMP is a cross-platform image editor available for GNU/Linux, macOS, Windows and more operating systems. It is free software, you can change its source code and distribute your changes.";
   const productLink = "https://www.gimp.org/";
@@ -34,7 +34,7 @@ export default function ProductPage() {
       <Grid sx={{ backgroundColor: "#F6F4F1" }}>
         <Header position="static" />
 
-        <Container sx={{ paddingTop: 3}}>
+        <Container sx={{ paddingTop: 3 }}>
           {/* top 3 items */}
           <Grid container spacing={3}>
             {/* Logo and Button */}
@@ -51,7 +51,7 @@ export default function ProductPage() {
                 <Button
                   href={productLink}
                   variant="contained"
-                  size="large"
+                  size="medium"
                   sx={{
                     textTransform: "capitalize",
                     fontWeight: "bold",
@@ -77,16 +77,15 @@ export default function ProductPage() {
                     href="/review"
                     size="large"
                     variant="contained"
-                    color="secondary"
                     sx={{
                       textTransform: "capitalize",
                       fontWeight: "bold",
                       fontSize: 20,
-                      backgroundColor: "#8064910",
+                      backgroundColor: "#806491",
                       borderRadius: 3,
                     }}
                   >
-                    Write a Review
+                    Write a Review!
                   </Button>
                   <div></div>
                 </Stack>
@@ -94,7 +93,7 @@ export default function ProductPage() {
             </Grid>
 
             {/* Total Ratings and Ratings per category */}
-            <Grid item xs={4} sx={{mt: 4 }}>
+            <Grid item xs={4} sx={{ mt: 4 }}>
               <TotalReview />
               <div>
                 <Card sx={{ p: 2, borderRadius: 3, marginTop: 3 }}>

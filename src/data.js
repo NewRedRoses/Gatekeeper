@@ -35,7 +35,7 @@ export const SoftwareData = [
     img:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Calligrakrita-base.svg/1280px-Calligrakrita-base.svg.png",
     rating: 2.5,
-    topTags: ["free", "open-source", "photo-editing"],
+    topTags: ["free", "open-source", "painting"],
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
   },
@@ -45,7 +45,7 @@ export const SoftwareData = [
     img:
       "https://logos-download.com/wp-content/uploads/2020/06/Adobe_Photoshop_Lightroom_Logo-700x662.png",
     rating: 4.5,
-    topTags: ["free", "download-only", "note-taking"],
+    topTags: ["free", "download-only", "photo-editing"],
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
   },
@@ -55,7 +55,7 @@ export const SoftwareData = [
     img:
       "https://logos-download.com/wp-content/uploads/2016/02/Twitter_Logo_new-700x569.png",
     rating: 2.5,
-    topTags: ["free", "proprietary", "note-taking"],
+    topTags: ["free", "news", "chaotic"],
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
   },
@@ -75,7 +75,7 @@ export const SoftwareData = [
     img:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1280px-Instagram_logo_2022.svg.png",
     rating: 3.0,
-    topTags: ["social", "proprietary", "note-taking"],
+    topTags: ["social", "proprietary", "social-media"],
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita praesentium delectus fugiat nam debitis aliquam blanditiis eius eaque sed tenetur.",
   },

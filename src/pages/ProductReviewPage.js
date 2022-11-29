@@ -17,7 +17,7 @@ import Footer from "../Components/footer";
 
 export default function ProductReviewPage() {
   // Ideally these would be passed as props/arguments
-  const productName = "GIMP";
+  const productName = "Gimp";
   const productLogo =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/The_GIMP_icon_-_gnome.svg/640px-The_GIMP_icon_-_gnome.svg.png";
 
@@ -34,7 +34,6 @@ export default function ProductReviewPage() {
         <Header position="static" />
 
         <Container align="center" sx={{ paddingTop: 3, backgroundColor: "" }}>
-
           <Grid container spacing={3}>
             {/* text field + text + buttons*/}
             <Grid
@@ -43,9 +42,9 @@ export default function ProductReviewPage() {
               align="center"
               sx={{ backgroundColor: "", mt: 3 }}
             >
-            <Typography variant="h4" fontWeight="bold">
-              Rate {productName}'s functionality
-            </Typography>
+              <Typography variant="h4" fontWeight="bold">
+                Rate {productName}'s functionality
+              </Typography>
 
               <TextField
                 variant="filled"
@@ -57,7 +56,7 @@ export default function ProductReviewPage() {
               />
 
               <Typography variant="h5" fontWeight="bold" align="center" mt={2}>
-                Would you reccomed {productName} to a friend?
+                Would you recommend {productName} to a friend?
               </Typography>
 
               <Stack
@@ -120,7 +119,7 @@ export default function ProductReviewPage() {
               />
               <Typography variant="h5" fontWeight="bold">
                 {" "}
-                Apperance
+                Appearance
               </Typography>
               <Rating
                 name="simple-controlled"
@@ -167,7 +166,7 @@ export default function ProductReviewPage() {
                   sx={{ flexWrap: "wrap", gap: 1 }}
                 >
                   <Chip
-                    label="image-editng"
+                    label="image-editing"
                     color="success"
                     onDelete={handleDelete}
                   />
