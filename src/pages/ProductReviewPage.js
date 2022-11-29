@@ -45,8 +45,15 @@ export default function ProductReviewPage() {
     retrieveData();
   }, []);
 
-  const handleDelete = () => {
-    console.info("You clicked the delete icon.");
+  const [chipData, setChipData] = React.useState([
+    { key: 0, label: 'image-editing' },
+    { key: 1, label: 'free' },
+    { key: 2, label: 'open-source' },
+    { key: 3, label: 'multi-platform' },
+    { key: 4, label: 'photos' },
+  ]);
+  const handleDelete = (chipToDelete) => () => {
+     setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
   };
 
   const handleClick = async() => {
@@ -204,29 +211,16 @@ export default function ProductReviewPage() {
                   direction="row"
                   ml={3}
                   mt={1}
-                  sx={{ flexWrap: "wrap", gap: 1 }}
-                >
-                  <Chip
-                    label="image-editing"
-                    color="success"
-                    onDelete={handleDelete}
-                  />
-                  <Chip label="free" color="success" onDelete={handleDelete} />
-                  <Chip
-                    label="open-source"
-                    color="success"
-                    onDelete={handleDelete}
-                  />
-                  <Chip
-                    label="multi-platform"
-                    color="success"
-                    onDelete={handleDelete}
-                  />
-                  <Chip
-                    label="photos"
-                    color="success"
-                    onDelete={handleDelete}
-                  />
+                  sx={{ flexWrap: "wrap", gap: 1 }}>
+                    {chipData.map( (data) => {
+                          return (
+                            <Box key={data.key}>
+                              <Chip color = "success"
+                                  label={data.label}
+                                  onDelete={data.label === 'React' ? undefined : handleDelete(data)}/>
+                            </Box>
+                          );
+                        })}
                 </Stack>
               </Box>
             </Grid>
