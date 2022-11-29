@@ -7,7 +7,7 @@ export default function UserReviewCard(props) {
         <Card sx={{ width: 625, height: 250, p:2, boxShadow: 5, borderRadius:3 }}>
             <Grid container spacing={2}>
                 <Grid item xs={1.5}>
-                    <Avatar sx={{ width: 55, height: 55 }}>L</Avatar>
+                    <Avatar src="/broken-image.jpg" sx={{ width: 55, height: 55 }}/>
                 </Grid>
                 <Grid item xs={4}>
                     <b>{props.name}</b>
