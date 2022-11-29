@@ -30,7 +30,6 @@ export default function ProductPage() {
   const [reviewIds, setReviewIds] = useState([]);
   const [productName, setProductName] = useState("");
   const [listOfAllReviews, setListOfAllReviews] = useState([]);
-  const [listOfReviews, setListOfReviews] = useState([]);
   
   //get product data
   const softwareRef = doc(db, 'software', '1');
@@ -73,19 +72,6 @@ export default function ProductPage() {
     }
     retrieveData();
   }, [])
-
-  var listOfReviewData = [];
-  const getReviews = () => {
-    listOfAllReviews.map((review) => {
-      for(var i = 0; i < reviewIds.length; i++){
-        if(review.id == reviewIds[i]){
-          listOfReviewData.push(review);
-        }
-      }
-    })
-  }
-  getReviews();
-  console.log(listOfReviewData);
 
   return (
     <>
