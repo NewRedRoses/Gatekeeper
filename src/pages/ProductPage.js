@@ -22,16 +22,9 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 const productName = window.location.pathname.substring(9);
 const softwareRef = collection(db, 'software');
 const q = query(softwareRef, where("name", "==", productName));
+const reviewPath = "/review/" + productName;
 
 export default function ProductPage() {
-  const productDescription =
-    "GIMP is a cross-platform image editor available for GNU/Linux, macOS, Windows and more operating systems. It is free software, you can change its source code and distribute your changes.";
-  const productLink = "https://www.gimp.org/";
-  const purple = "#806491";
-  const productLogo =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/The_GIMP_icon_-_gnome.svg/640px-The_GIMP_icon_-_gnome.svg.png";
-
-  const [value, setValue] = React.useState(4);
   const [img, setImg] = useState("");
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
@@ -42,7 +35,6 @@ export default function ProductPage() {
       const docsSnap = await getDocs(q);
       docsSnap.forEach(doc => {
         const data = doc.data();
-        console.log(data);
 
         setImg(data.img);
         setRating(data.rating);
@@ -53,10 +45,6 @@ export default function ProductPage() {
     retrieveData();
   }, [])
 
-  const productLogoStyles = {
-    width: 100,
-    height: 100,
-  };
   return (
     <>
       <Grid sx={{ backgroundColor: "#F6F4F1" }}>
@@ -102,7 +90,7 @@ export default function ProductPage() {
                     {description}
                   </Typography>
                   <Button
-                    href="/review"
+                    href={reviewPath}
                     size="large"
                     variant="contained"
                     color="secondary"
@@ -132,7 +120,7 @@ export default function ProductPage() {
                     Usability
                   </Typography>
                   <div>
-                    <Rating name="read-only" value={value} readOnly />
+                    <Rating name="read-only" value={4} readOnly />
                   </div>
                   <Typography variant="h5" fontWeight="bold">
                     Appearance

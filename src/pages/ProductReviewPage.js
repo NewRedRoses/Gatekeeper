@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   Box,
   Grid,
@@ -7,26 +8,70 @@ import {
   Rating,
   Chip,
   TextField,
-  Button,
-  Card,
+  Button
 } from "@mui/material";
-import SelectTag from "../Components/SelectTag";
 import { Container } from "@mui/system";
+
+import SelectTag from "../Components/SelectTag";
 import Header from "../Components/header";
 import Footer from "../Components/footer";
 
-export default function ProductReviewPage() {
-  // Ideally these would be passed as props/arguments
-  const productName = "GIMP";
-  const productLogo =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/The_GIMP_icon_-_gnome.svg/640px-The_GIMP_icon_-_gnome.svg.png";
+import { db } from "../firebase.js";
+import { collection, doc, setDoc, getDocs, query, where } from "firebase/firestore"; 
 
-  const [usabilityRating, setUsabilityRating] = React.useState(0);
-  const [appearanceRating, setAppearanceRating] = React.useState(0);
-  const [customizationRating, setCustomizationRating] = React.useState(0);
+export default function ProductReviewPage() {
+  const [usabilityRating, setUsabilityRating] = useState(0);
+  const [appearanceRating, setAppearanceRating] = useState(0);
+  const [customizationRating, setCustomizationRating] = useState(0);
+  
+  const name = "Lisa Simpson";
+
+  const [rating, setRating] = useState(0);
+  const [tags, setTags] = useState([]);
+  const [review, setReview] = useState("");
+  const [productId, setProductId] = useState("");
+  const [reviewList, setReviewList] = useState([]);
+
+  //find current product ID
+  const productName = window.location.pathname.substring(8);
+  const softwareRef = collection(db, 'software');
+  const q = query(softwareRef, where("name", "==", productName));
+  useEffect(() => {
+    const retrieveData = async() => {
+      const docsSnap = await getDocs(q);
+      docsSnap.forEach(doc => {
+        setProductId(doc.id);
+
+        const data = doc.data();
+        console.log(data.reviews);
+        setReviewList(data.reviews);
+        console.log(reviewList);
+      })
+    }
+    retrieveData();
+  }, []);
+
   const handleDelete = () => {
     console.info("You clicked the delete icon.");
   };
+
+  //TODO: genereate random ids
+  const id = "6";
+
+  const handleClick = async() => {
+    //add new review to db
+    await setDoc(doc(db, "reviews", id), {
+      name: name,
+      review: review,
+      rating: parseInt((usabilityRating + appearanceRating + customizationRating) / 3)
+    });
+
+    //update product's review list
+    const productRef = doc(db, 'software', '1');
+    setDoc(productRef, { reviews: reviewList }, { merge: true });
+
+    console.log("posted to db");
+  }
 
   return (
     <>
@@ -99,6 +144,7 @@ export default function ProductReviewPage() {
                   backgroundColor: "#806491",
                   mt: 2,
                 }}
+                onClick={handleClick}
               >
                 Post Your Review!
               </Button>
