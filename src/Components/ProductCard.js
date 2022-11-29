@@ -20,8 +20,9 @@ export default function ProductCard({
   top_tags,
   description,
 }) {
+
   const handleClick = () => {
-    window.location.href = "/product";
+    window.location.href = "/product/" + name;
   };
 
   return (

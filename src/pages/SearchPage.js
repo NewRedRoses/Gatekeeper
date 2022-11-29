@@ -22,7 +22,6 @@ const softwareRef = collection(db, 'software');
 const q = query(softwareRef);
 const products = [];
 
-
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [listOfProducts, setListOfProducts] = useState([]);
@@ -31,6 +30,7 @@ export default function SearchPage() {
     console.log("the value of the search is", searchQuery);
   }, [searchQuery]);
 
+  //retrieve data from software collection in db
   useEffect(() => {
     const retrieveData = async() => { 
       const docsSnap = await getDocs(q)
