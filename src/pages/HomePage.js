@@ -24,7 +24,7 @@ export default function HomePage() {
               color="white"
               fontWeight="bold"
             >
-              Discover alternatives to your favorite softwares.
+              Discover Alternatives to Your Favorite Software.
             </Typography>
             <Typography
               variant="h6"

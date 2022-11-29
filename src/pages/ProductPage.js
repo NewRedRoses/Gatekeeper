@@ -50,7 +50,7 @@ export default function ProductPage() {
       <Grid sx={{ backgroundColor: "#F6F4F1" }}>
         <Header position="static" />
 
-        <Container sx={{ paddingTop: 3}}>
+        <Container sx={{ paddingTop: 3 }}>
           {/* top 3 items */}
           <Grid container spacing={3}>
             {/* Logo and Button */}
@@ -67,7 +67,7 @@ export default function ProductPage() {
                 <Button
                   href={url}
                   variant="contained"
-                  size="large"
+                  size="medium"
                   sx={{
                     textTransform: "capitalize",
                     fontWeight: "bold",
@@ -98,7 +98,7 @@ export default function ProductPage() {
                       textTransform: "capitalize",
                       fontWeight: "bold",
                       fontSize: 20,
-                      backgroundColor: "#8064910",
+                      backgroundColor: "#806491",
                       borderRadius: 3,
                     }}
                   >
@@ -110,7 +110,7 @@ export default function ProductPage() {
             </Grid>
 
             {/* Total Ratings and Ratings per category */}
-            <Grid item xs={4} sx={{mt: 4 }}>
+            <Grid item xs={4} sx={{ mt: 4 }}>
               <TotalReview 
                 rating={rating}
               />
