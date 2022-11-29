@@ -17,36 +17,27 @@ import Header from "../Components/header";
 import Footer from "../Components/footer";
 
 import { db } from "../firebase.js";
-import { collection, doc, setDoc, getDocs, query, where } from "firebase/firestore"; 
+import { collection, doc, addDoc, getDoc, setDoc, query, where } from "firebase/firestore"; 
 
 export default function ProductReviewPage() {
   const [usabilityRating, setUsabilityRating] = useState(0);
   const [appearanceRating, setAppearanceRating] = useState(0);
   const [customizationRating, setCustomizationRating] = useState(0);
+  const [review, setReview] = useState("");
   
   const name = "Lisa Simpson";
-
-  const [rating, setRating] = useState(0);
-  const [tags, setTags] = useState([]);
-  const [review, setReview] = useState("");
-  const [productId, setProductId] = useState("");
-  const [reviewList, setReviewList] = useState([]);
-
-  //find current product ID
+  const date = "November 29, 2022";
+  const tags = ["free", "easy-to-use", "photo-editing"];
   const productName = window.location.pathname.substring(8);
-  const softwareRef = collection(db, 'software');
-  const q = query(softwareRef, where("name", "==", productName));
+
+  //find current product ID & current review list
+  const softwareRef = doc(db, 'software', '1');
+  var reviewList = [];
   useEffect(() => {
     const retrieveData = async() => {
-      const docsSnap = await getDocs(q);
-      docsSnap.forEach(doc => {
-        setProductId(doc.id);
-
-        const data = doc.data();
-        console.log(data.reviews);
-        setReviewList(data.reviews);
-        console.log(reviewList);
-      })
+      const docSnap = await getDoc(softwareRef);
+      const data = docSnap.data();
+      reviewList = data.reviews;
     }
     retrieveData();
   }, []);
@@ -55,22 +46,19 @@ export default function ProductReviewPage() {
     console.info("You clicked the delete icon.");
   };
 
-  //TODO: genereate random ids
-  const id = "6";
-
   const handleClick = async() => {
     //add new review to db
-    await setDoc(doc(db, "reviews", id), {
+    const newReview = await addDoc(collection(db, "reviews"), {
       name: name,
       review: review,
-      rating: parseInt((usabilityRating + appearanceRating + customizationRating) / 3)
+      rating: parseInt((usabilityRating + appearanceRating + customizationRating) / 3),
+      date: date,
+      tags: tags
     });
-
+    
     //update product's review list
-    const productRef = doc(db, 'software', '1');
-    setDoc(productRef, { reviews: reviewList }, { merge: true });
-
-    console.log("posted to db");
+    reviewList.push(newReview.id);
+    setDoc(softwareRef, { reviews: reviewList }, { merge: true });
   }
 
   return (
@@ -98,6 +86,7 @@ export default function ProductReviewPage() {
                 rows={21}
                 label="Leave your thoughts!"
                 sx={{ width: "600px", borderRadius: 5, mt: 3 }}
+                onChange={e => setReview(e.target.value)}
               />
 
               <Typography variant="h5" fontWeight="bold" align="center" mt={2}>

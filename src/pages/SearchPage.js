@@ -8,7 +8,7 @@ import SearchBar from "../Components/SearchBar";
 import ProductCard from "../Components/ProductCard";
 
 import { db } from "../firebase.js";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 const filterData = (query, data) => {
   if (!query) {
@@ -19,7 +19,7 @@ const filterData = (query, data) => {
 };
 
 const softwareRef = collection(db, 'software');
-const q = query(softwareRef);
+const q = query(softwareRef, orderBy('id'));
 const products = [];
 
 export default function SearchPage() {
