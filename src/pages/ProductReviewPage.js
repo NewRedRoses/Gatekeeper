@@ -8,7 +8,7 @@ import {
   Rating,
   Chip,
   TextField,
-  Button
+  Button,
 } from "@mui/material";
 import { Container } from "@mui/system";
 
@@ -17,7 +17,7 @@ import Header from "../Components/header";
 import Footer from "../Components/footer";
 
 import { db } from "../firebase.js";
-import { collection, doc, addDoc, getDoc, setDoc } from "firebase/firestore"; 
+import { collection, doc, addDoc, getDoc, setDoc } from "firebase/firestore";
 
 export default function ProductReviewPage() {
   const [usabilityRating, setUsabilityRating] = useState(0);
@@ -25,7 +25,7 @@ export default function ProductReviewPage() {
   const [customizationRating, setCustomizationRating] = useState(0);
   const [review, setReview] = useState("");
   const [productName, setProductName] = useState("");
-  
+
   const name = "Mark Abrahams";
   const date = "November 29, 2022";
   const tags = ["free", "easy-to-use", "photo-editing"];
@@ -33,45 +33,51 @@ export default function ProductReviewPage() {
 
   //find current product ID & current review list
   //hardcoded id for demo
-  const softwareRef = doc(db, 'software', '1');
+  const softwareRef = doc(db, "software", "1");
   var reviewList = [];
   useEffect(() => {
-    const retrieveData = async() => {
+    const retrieveData = async () => {
       const docSnap = await getDoc(softwareRef);
       const data = docSnap.data();
       reviewList = data.reviews;
       setProductName(data.name);
-    }
+    };
     retrieveData();
   }, []);
 
   const [chipData, setChipData] = React.useState([
-    { key: 0, label: 'image-editing' },
-    { key: 1, label: 'free' },
-    { key: 2, label: 'open-source' },
-    { key: 3, label: 'multi-platform' },
-    { key: 4, label: 'photos' },
+    { key: 0, label: "image-editing" },
+    { key: 1, label: "free" },
+    { key: 2, label: "open-source" },
+    { key: 3, label: "multi-platform" },
+    { key: 4, label: "photos" },
   ]);
   const handleDelete = (chipToDelete) => () => {
-     setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
+    setChipData((chips) =>
+      chips.filter((chip) => chip.key !== chipToDelete.key)
+    );
   };
 
-  const handleClick = async() => {
+  const handleClick = async () => {
     //add new review to db
     //name, date hardcoded for db
     const newReview = await addDoc(collection(db, "reviews"), {
       id: 0,
       name: name,
       review: review,
-      rating: parseInt((usabilityRating + appearanceRating + customizationRating) / 3),
+      rating: parseInt(
+        (usabilityRating + appearanceRating + customizationRating) / 3
+      ),
       date: date,
-      tags: tags
+      tags: tags,
     });
-    
+
     //update product's review list
     reviewList.push(newReview.id);
     setDoc(softwareRef, { reviews: reviewList }, { merge: true });
-  }
+
+    window.location.href = "/product/" + productId;
+  };
 
   return (
     <>
@@ -98,7 +104,7 @@ export default function ProductReviewPage() {
                 rows={21}
                 label="Leave your thoughts!"
                 sx={{ width: "600px", borderRadius: 5, mt: 3 }}
-                onChange={e => setReview(e.target.value)}
+                onChange={(e) => setReview(e.target.value)}
               />
 
               <Typography variant="h5" fontWeight="bold" align="center" mt={2}>
@@ -211,16 +217,23 @@ export default function ProductReviewPage() {
                   direction="row"
                   ml={3}
                   mt={1}
-                  sx={{ flexWrap: "wrap", gap: 1 }}>
-                    {chipData.map( (data) => {
-                          return (
-                            <Box key={data.key}>
-                              <Chip color = "success"
-                                  label={data.label}
-                                  onDelete={data.label === 'React' ? undefined : handleDelete(data)}/>
-                            </Box>
-                          );
-                        })}
+                  sx={{ flexWrap: "wrap", gap: 1 }}
+                >
+                  {chipData.map((data) => {
+                    return (
+                      <Box key={data.key}>
+                        <Chip
+                          color="success"
+                          label={data.label}
+                          onDelete={
+                            data.label === "React"
+                              ? undefined
+                              : handleDelete(data)
+                          }
+                        />
+                      </Box>
+                    );
+                  })}
                 </Stack>
               </Box>
             </Grid>
