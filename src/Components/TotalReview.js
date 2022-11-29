@@ -11,5 +11,5 @@ export default function TotalReview(props) {
           <Rating name="size-large" value={props.rating} size="large" readOnly/>
       </CardContent>
     </Card>
-  )
+  );
 }

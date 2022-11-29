@@ -35,7 +35,6 @@ export default function ProductPage() {
       const docsSnap = await getDocs(q);
       docsSnap.forEach(doc => {
         const data = doc.data();
-
         setImg(data.img);
         setRating(data.rating);
         setUrl(data.url);
@@ -93,7 +92,6 @@ export default function ProductPage() {
                     href={reviewPath}
                     size="large"
                     variant="contained"
-                    color="secondary"
                     sx={{
                       textTransform: "capitalize",
                       fontWeight: "bold",
@@ -102,7 +100,7 @@ export default function ProductPage() {
                       borderRadius: 3,
                     }}
                   >
-                    Write a Review
+                    Write a Review!
                   </Button>
                   <div></div>
                 </Stack>
