@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/product" element={<ProductPage />} />
-        <Route path="/review" element={<ProductReviewPage />} />
+        <Route path="/product/:name" element={<ProductPage />} />
+        <Route path="/review/:name" element={<ProductReviewPage />} />
         {/* <Route path="*" element={<HomePage />} /> */}
       </Routes>
     </BrowserRouter>

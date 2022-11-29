@@ -2,30 +2,28 @@ import React from "react";
 import {
   Card,
   CardMedia,
-  Box,
   Stack,
   CardActionArea,
   CardContent,
   Typography,
   Grid,
-  Button,
 } from "@mui/material";
 
-import { useNavigate } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 
 import Chips from "./Chips";
-import { useEffect } from "react";
 
 export default function ProductCard({
+  id,
   name,
   imgUrl,
   rating,
-  topTags,
+  top_tags,
   description,
 }) {
+
   const handleClick = () => {
-    window.location.href = "/product";
+    window.location.href = "/product/" + id;
   };
 
   return (
@@ -59,7 +57,7 @@ export default function ProductCard({
 
               {/* tags  */}
               <Grid container spacing={0.5}>
-                {topTags.map((tag, index) => {
+                {top_tags.map((tag, index) => {
                   return (
                     <Grid item>
                       <Chips label={tag} />

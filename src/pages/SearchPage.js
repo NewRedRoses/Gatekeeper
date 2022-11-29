@@ -1,15 +1,14 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Grid, Box, Container } from "@mui/material";
+
+// File imports
 import Header from "../Components/header";
 import Footer from "../Components/footer";
-import { Grid, Box, Container, Card, Stack } from "@mui/material";
-// File imports
 import SearchBar from "../Components/SearchBar";
 import ProductCard from "../Components/ProductCard";
 
-// TODO: this "data" object has to be replaced with firebase data.
-import { SoftwareData } from "../data";
-import { useEffect } from "react";
+import { db } from "../firebase.js";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 const filterData = (query, data) => {
   if (!query) {
@@ -21,11 +20,38 @@ const filterData = (query, data) => {
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const dataFiltered = filterData(searchQuery, SoftwareData);
+  const [listOfProducts, setListOfProducts] = useState([]);
 
   useEffect(() => {
     console.log("the value of the search is", searchQuery);
   }, [searchQuery]);
+
+  //retrieve data from software collection in db
+  const softwareRef = collection(db, 'software');
+  const q = query(softwareRef, orderBy('id'));
+  var products = [];
+  useEffect(() => {
+    const retrieveData = async() => { 
+      const docsSnap = await getDocs(q);
+      docsSnap.forEach(doc => {
+        const data = doc.data();
+          
+        var json = {
+          "id": doc.id,
+          "name": data.name,
+          "img": data.img,
+          "rating": data.rating,
+          "top_tags": data.top_tags,
+          "description": data.description
+        };
+        products.push(json);
+      })
+      setListOfProducts(products);
+    }
+    retrieveData();
+  }, [])
+  listOfProducts.splice(14);
+  const dataFiltered = filterData(searchQuery, listOfProducts);
 
   return (
     <Box sx={{ backgroundColor: "#F6F4F1" }}>
@@ -39,26 +65,17 @@ export default function SearchPage() {
           </Box>
 
           {/* The searched results */}
-
           <Grid container spacing={3} sx={{ paddingBottom: 4 }}>
             {dataFiltered.map((filteredSoftware) => {
-              const {
-                id,
-                name,
-                img,
-                rating,
-                topTags,
-                description,
-              } = filteredSoftware;
-
               return (
                 <Grid item xs={12} sm={6}>
                   <ProductCard
-                    name={name}
+                    id={filteredSoftware.id}
+                    name={filteredSoftware.name}
                     imgUrl={filteredSoftware.img}
-                    rating={rating}
-                    topTags={topTags}
-                    description={description}
+                    rating={filteredSoftware.rating}
+                    top_tags={filteredSoftware.top_tags}
+                    description={filteredSoftware.description}
                   />
                 </Grid>
               );

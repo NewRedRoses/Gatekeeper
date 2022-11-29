@@ -8,27 +8,71 @@ import {
   Card,
 } from "@mui/material";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import Header from "../Components/header";
 import Footer from "../Components/footer";
 import UserReviewCard from "../Components/UserReviewCard";
 import TotalReview from "../Components/TotalReview";
 
+import { db } from "../firebase.js";
+import { collection, getDoc, doc, getDocs, query, orderBy } from "firebase/firestore";
+
+
+const productId = window.location.pathname.substring(9);
+const reviewPath = "/review/" + productId;
+
 export default function ProductPage() {
-  const productName = "Gimp";
-  const productDescription =
-    "GIMP is a cross-platform image editor available for GNU/Linux, macOS, Windows and more operating systems. It is free software, you can change its source code and distribute your changes.";
-  const productLink = "https://www.gimp.org/";
-  const purple = "#806491";
-  const productLogo =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/The_GIMP_icon_-_gnome.svg/640px-The_GIMP_icon_-_gnome.svg.png";
+  const [img, setImg] = useState("");
+  const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [rating, setRating] = useState(0);
+  const [reviewIds, setReviewIds] = useState([]);
+  const [productName, setProductName] = useState("");
+  const [listOfAllReviews, setListOfAllReviews] = useState([]);
+  
+  //get product data
+  const softwareRef = doc(db, 'software', '1');
+  useEffect(() => {
+    const retrieveData = async() => {
+      const docSnap = await getDoc(softwareRef);
+      const data = docSnap.data();
+      
+      setImg(data.img);
+      setRating(data.rating);
+      setUrl(data.url);
+      setDescription(data.description);
+      setReviewIds(data.reviews);
+      setProductName(data.name);
+    }
+    retrieveData();
+  }, [])
 
-  const [value, setValue] = React.useState(4);
+  //get review data
+  const reviewRef = collection(db, 'reviews');
+  const q = query(reviewRef, orderBy('id'));
+  const reviewData = [];
+  useEffect(() => {
+    const retrieveData = async() => {
+      const docsSnap = await getDocs(q);
+      docsSnap.forEach(doc => {
+        const data = doc.data();
 
-  const productLogoStyles = {
-    width: 100,
-    height: 100,
-  };
+        var json = {
+          "id": doc.id,
+          "name": data.name,
+          "review": data.review,
+          "rating": data.rating,
+          "date": data.date,
+          "tags": data.tags
+        };
+        reviewData.push(json);
+      })
+      setListOfAllReviews(reviewData);
+    }
+    retrieveData();
+  }, [])
+
   return (
     <>
       <Grid sx={{ backgroundColor: "#F6F4F1" }}>
@@ -43,13 +87,13 @@ export default function ProductPage() {
                 <img
                   width={250}
                   height={250}
-                  src={productLogo}
+                  src={img}
                   alt={productName + "'s Logo"}
                 />
               </div>
               <div>
                 <Button
-                  href={productLink}
+                  href={url}
                   variant="contained"
                   size="medium"
                   sx={{
@@ -71,10 +115,10 @@ export default function ProductPage() {
                     {productName}
                   </Typography>
                   <Typography variant="p" fontSize="25">
-                    {productDescription}
+                    {description}
                   </Typography>
                   <Button
-                    href="/review"
+                    href={reviewPath}
                     size="large"
                     variant="contained"
                     sx={{
@@ -94,14 +138,16 @@ export default function ProductPage() {
 
             {/* Total Ratings and Ratings per category */}
             <Grid item xs={4} sx={{ mt: 4 }}>
-              <TotalReview />
+              <TotalReview 
+                rating={rating}
+              />
               <div>
                 <Card sx={{ p: 2, borderRadius: 3, marginTop: 3 }}>
                   <Typography variant="h5" fontWeight="bold">
                     Usability
                   </Typography>
                   <div>
-                    <Rating name="read-only" value={value} readOnly />
+                    <Rating name="read-only" value={4} readOnly />
                   </div>
                   <Typography variant="h5" fontWeight="bold">
                     Appearance
@@ -124,9 +170,17 @@ export default function ProductPage() {
           <Stack spacing={2}>
             <h1> Thoughts of the Community</h1>
 
-            <UserReviewCard />
-            <UserReviewCard />
-            <UserReviewCard />
+            {listOfAllReviews.map((review) => {
+              return (
+                <UserReviewCard
+                  name={review.name}
+                  review={review.review}
+                  date={review.date}
+                  rating={review.rating}
+                  tags={review.tags}
+                />
+              );
+            })}
           </Stack>
         </Container>
       </Grid>
