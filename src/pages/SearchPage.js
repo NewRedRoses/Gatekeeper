@@ -29,7 +29,7 @@ export default function SearchPage() {
   //retrieve data from software collection in db
   const softwareRef = collection(db, 'software');
   const q = query(softwareRef, orderBy('id'));
-  const products = [];
+  var products = [];
   useEffect(() => {
     const retrieveData = async() => { 
       const docsSnap = await getDocs(q);
@@ -50,7 +50,7 @@ export default function SearchPage() {
     }
     retrieveData();
   }, [])
-
+  listOfProducts.splice(14);
   const dataFiltered = filterData(searchQuery, listOfProducts);
 
   return (
