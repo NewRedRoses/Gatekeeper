@@ -16,33 +16,76 @@ import UserReviewCard from "../Components/UserReviewCard";
 import TotalReview from "../Components/TotalReview";
 
 import { db } from "../firebase.js";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDoc, doc, getDocs, query, orderBy } from "firebase/firestore";
 
 
-const productName = window.location.pathname.substring(9);
-const softwareRef = collection(db, 'software');
-const q = query(softwareRef, where("name", "==", productName));
-const reviewPath = "/review/" + productName;
+const productId = window.location.pathname.substring(9);
+const reviewPath = "/review/" + productId;
 
 export default function ProductPage() {
   const [img, setImg] = useState("");
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState(0);
+  const [reviewIds, setReviewIds] = useState([]);
+  const [productName, setProductName] = useState("");
+  const [listOfAllReviews, setListOfAllReviews] = useState([]);
+  const [listOfReviews, setListOfReviews] = useState([]);
   
+  //get product data
+  const softwareRef = doc(db, 'software', '1');
+  useEffect(() => {
+    const retrieveData = async() => {
+      const docSnap = await getDoc(softwareRef);
+      const data = docSnap.data();
+      
+      setImg(data.img);
+      setRating(data.rating);
+      setUrl(data.url);
+      setDescription(data.description);
+      setReviewIds(data.reviews);
+      setProductName(data.name);
+    }
+    retrieveData();
+  }, [])
+
+  //get review data
+  const reviewRef = collection(db, 'reviews');
+  const q = query(reviewRef, orderBy('id'));
+  const reviewData = [];
   useEffect(() => {
     const retrieveData = async() => {
       const docsSnap = await getDocs(q);
       docsSnap.forEach(doc => {
         const data = doc.data();
-        setImg(data.img);
-        setRating(data.rating);
-        setUrl(data.url);
-        setDescription(data.description);
+
+        var json = {
+          "id": doc.id,
+          "name": data.name,
+          "review": data.review,
+          "rating": data.rating,
+          "date": data.date,
+          "tags": data.tags
+        };
+        reviewData.push(json);
       })
+      setListOfAllReviews(reviewData);
     }
     retrieveData();
   }, [])
+
+  var listOfReviewData = [];
+  const getReviews = () => {
+    listOfAllReviews.map((review) => {
+      for(var i = 0; i < reviewIds.length; i++){
+        if(review.id == reviewIds[i]){
+          listOfReviewData.push(review);
+        }
+      }
+    })
+  }
+  getReviews();
+  console.log(listOfReviewData);
 
   return (
     <>
@@ -141,9 +184,17 @@ export default function ProductPage() {
           <Stack spacing={2}>
             <h1> Thoughts of the Community</h1>
 
-            <UserReviewCard />
-            <UserReviewCard />
-            <UserReviewCard />
+            {listOfAllReviews.map((review) => {
+              return (
+                <UserReviewCard
+                  name={review.name}
+                  review={review.review}
+                  date={review.date}
+                  rating={review.rating}
+                  tags={review.tags}
+                />
+              );
+            })}
           </Stack>
         </Container>
       </Grid>

@@ -14,6 +14,7 @@ import Rating from "@mui/material/Rating";
 import Chips from "./Chips";
 
 export default function ProductCard({
+  id,
   name,
   imgUrl,
   rating,
@@ -22,7 +23,7 @@ export default function ProductCard({
 }) {
 
   const handleClick = () => {
-    window.location.href = "/product/" + name;
+    window.location.href = "/product/" + id;
   };
 
   return (

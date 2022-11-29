@@ -17,20 +17,22 @@ import Header from "../Components/header";
 import Footer from "../Components/footer";
 
 import { db } from "../firebase.js";
-import { collection, doc, addDoc, getDoc, setDoc, query, where } from "firebase/firestore"; 
+import { collection, doc, addDoc, getDoc, setDoc } from "firebase/firestore"; 
 
 export default function ProductReviewPage() {
   const [usabilityRating, setUsabilityRating] = useState(0);
   const [appearanceRating, setAppearanceRating] = useState(0);
   const [customizationRating, setCustomizationRating] = useState(0);
   const [review, setReview] = useState("");
+  const [productName, setProductName] = useState("");
   
-  const name = "Lisa Simpson";
+  const name = "Mark Abrahams";
   const date = "November 29, 2022";
   const tags = ["free", "easy-to-use", "photo-editing"];
-  const productName = window.location.pathname.substring(8);
+  const productId = window.location.pathname.substring(8);
 
   //find current product ID & current review list
+  //hardcoded id for demo
   const softwareRef = doc(db, 'software', '1');
   var reviewList = [];
   useEffect(() => {
@@ -38,6 +40,7 @@ export default function ProductReviewPage() {
       const docSnap = await getDoc(softwareRef);
       const data = docSnap.data();
       reviewList = data.reviews;
+      setProductName(data.name);
     }
     retrieveData();
   }, []);
@@ -48,7 +51,9 @@ export default function ProductReviewPage() {
 
   const handleClick = async() => {
     //add new review to db
+    //name, date hardcoded for db
     const newReview = await addDoc(collection(db, "reviews"), {
+      id: 0,
       name: name,
       review: review,
       rating: parseInt((usabilityRating + appearanceRating + customizationRating) / 3),
@@ -188,6 +193,7 @@ export default function ProductReviewPage() {
                   mt: 5,
                 }}
               >
+                {/*TODO: implement tag selection*/}
                 <Typography sx={{ textAlign: "center" }}>
                   {" "}
                   Select tags that describe the product from the drop-down menu.

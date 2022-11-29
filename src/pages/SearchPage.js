@@ -18,10 +18,6 @@ const filterData = (query, data) => {
   }
 };
 
-const softwareRef = collection(db, 'software');
-const q = query(softwareRef, orderBy('id'));
-const products = [];
-
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [listOfProducts, setListOfProducts] = useState([]);
@@ -31,20 +27,23 @@ export default function SearchPage() {
   }, [searchQuery]);
 
   //retrieve data from software collection in db
+  const softwareRef = collection(db, 'software');
+  const q = query(softwareRef, orderBy('id'));
+  const products = [];
   useEffect(() => {
     const retrieveData = async() => { 
-      const docsSnap = await getDocs(q)
+      const docsSnap = await getDocs(q);
       docsSnap.forEach(doc => {
         const data = doc.data();
           
         var json = {
+          "id": doc.id,
           "name": data.name,
           "img": data.img,
           "rating": data.rating,
           "top_tags": data.top_tags,
           "description": data.description
         };
-    
         products.push(json);
       })
       setListOfProducts(products);
@@ -71,6 +70,7 @@ export default function SearchPage() {
               return (
                 <Grid item xs={12} sm={6}>
                   <ProductCard
+                    id={filteredSoftware.id}
                     name={filteredSoftware.name}
                     imgUrl={filteredSoftware.img}
                     rating={filteredSoftware.rating}
